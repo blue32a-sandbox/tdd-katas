@@ -1,5 +1,8 @@
+import capitalize from 'lodash/capitalize';
+
 export default class Greeter {
   greet(name) {
-    return `Hello ${name.trim()}`;
+    const filteredName = capitalize(name.trim());
+    return `Hello ${filteredName}`;
   }
 }

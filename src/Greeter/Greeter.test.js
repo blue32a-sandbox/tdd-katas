@@ -15,4 +15,11 @@ describe('挨拶をする Greeter クラス', () => {
 
     expect(result).toBe('Hello John');
   });
+  test('greet メソッドは名前の最初の文字を大文字にする', () => {
+    const sut = new Greeter();
+
+    const result = sut.greet('john');
+
+    expect(result).toBe('Hello John');
+  });
 });
