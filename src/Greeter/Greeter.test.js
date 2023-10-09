@@ -1,25 +1,27 @@
 import Greeter from './Greeter';
 
 describe('挨拶をする Greeter クラス', () => {
-  test('greet メソッドは名前を文字列で受け取り、文字列 "Hello <名前>" にして返す', () => {
-    const sut = new Greeter();
+  describe('greet メソッドは引数の名前に対して、文字列で挨拶を返す', () => {
+    test('文字列 "Hello <名前>" を返す', () => {
+      const sut = new Greeter();
 
-    const result = sut.greet('John');
+      const result = sut.greet('John');
 
-    expect(result).toBe('Hello John');
-  });
-  test('greet メソッドは入力をトリムする', () => {
-    const sut = new Greeter();
+      expect(result).toBe('Hello John');
+    });
+    test('名前をトリムする', () => {
+      const sut = new Greeter();
 
-    const result = sut.greet('  John  ');
+      const result = sut.greet('  John  ');
 
-    expect(result).toBe('Hello John');
-  });
-  test('greet メソッドは名前の最初の文字を大文字にする', () => {
-    const sut = new Greeter();
+      expect(result).toBe('Hello John');
+    });
+    test('名前の最初の文字を大文字にする', () => {
+      const sut = new Greeter();
 
-    const result = sut.greet('john');
+      const result = sut.greet('john');
 
-    expect(result).toBe('Hello John');
-  });
+      expect(result).toBe('Hello John');
+    });
+  })
 });
