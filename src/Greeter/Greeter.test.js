@@ -14,11 +14,23 @@ describe('挨拶をする Greeter クラス', () => {
       expect(result).toBe('Good morning John');
     });
     test.each([
+      [18],
+      [20],
+      [21],
+    ])('時刻が18:00-22:00の場合、文字列 "Good evening <名前>" を返す (%i:00)', (hours) => {
+      const sut = factoryGreeter(factoryDate(hours));
+
+      const result = sut.greet('John');
+
+      expect(result).toBe('Good evening John');
+    });
+    test.each([
       [0],
       [3],
       [5],
       [12],
       [17],
+      [22],
       [23],
     ])('それ以外の時刻の場合、文字列 "Hello <名前>" を返す (%i:00)', (hours) => {
       const sut = factoryGreeter(factoryDate(hours));
