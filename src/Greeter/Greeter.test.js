@@ -8,4 +8,11 @@ describe('挨拶をする Greeter クラス', () => {
 
     expect(result).toBe('Hello John');
   });
+  test('greet メソッドは入力をトリムする', () => {
+    const sut = new Greeter();
+
+    const result = sut.greet('  John  ');
+
+    expect(result).toBe('Hello John');
+  });
 });
