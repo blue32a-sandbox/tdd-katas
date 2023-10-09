@@ -8,6 +8,7 @@ export default class Greeter {
     const filteredName = capitalize(name.trim());
     if (this.morning) return `Good morning ${filteredName}`;
     if (this.evening) return `Good evening ${filteredName}`;
+    if (this.night) return `Good night ${filteredName}`;
     return `Hello ${filteredName}`;
   }
   get morning() {
@@ -15,5 +16,9 @@ export default class Greeter {
   }
   get evening() {
     return this._date.getHours() >= 18 && this._date.getHours() < 22;
+  }
+  get night() {
+    return this._date.getHours() >= 22
+          || (this._date.getHours() >= 0 && this._date.getHours() < 6);
   }
 }

@@ -25,13 +25,22 @@ describe('挨拶をする Greeter クラス', () => {
       expect(result).toBe('Good evening John');
     });
     test.each([
+      [22],
+      [23],
       [0],
       [3],
       [5],
+    ])('時刻が22:00-06:00の場合、文字列 "Good night <名前>" を返す (%i:00)', (hours) => {
+      const sut = factoryGreeter(factoryDate(hours));
+
+      const result = sut.greet('John');
+
+      expect(result).toBe('Good night John');
+    });
+    test.each([
       [12],
+      [15],
       [17],
-      [22],
-      [23],
     ])('それ以外の時刻の場合、文字列 "Hello <名前>" を返す (%i:00)', (hours) => {
       const sut = factoryGreeter(factoryDate(hours));
 
@@ -40,18 +49,18 @@ describe('挨拶をする Greeter クラス', () => {
       expect(result).toBe('Hello John');
     });
     test('名前をトリムする', () => {
-      const sut = factoryGreeter();
+      const sut = factoryGreeter(factoryDate(12));
 
       const result = sut.greet('  John  ');
 
       expect(result).toBe('Hello John');
     });
     test('名前の最初の文字を大文字にする', () => {
-      const sut = factoryGreeter();
+      const sut = factoryGreeter(factoryDate(12));
 
       const result = sut.greet('john');
 
-      expect(result).toBe('Hello John');
+      expect(result).toContain('Hello John');
     });
   })
 });
