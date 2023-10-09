@@ -8,6 +8,8 @@ services:
       - node_modules:/home/app/node_modules
     working_dir: /home/app
     tty: true
+    environment:
+      TZ: Asia/Tokyo
 
 volumes:
   node_modules:
