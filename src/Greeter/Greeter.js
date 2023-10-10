@@ -10,18 +10,21 @@ export default class Greeter {
 
     this._logger.log(`greeted ${filteredName}`);
 
-    if (this.isMorning) return `Good morning ${filteredName}`;
-    if (this.isEvening) return `Good evening ${filteredName}`;
-    if (this.isNight) return `Good night ${filteredName}`;
-    return `Hello ${filteredName}`;
+    return `${this._greeting} ${filteredName}`;
   }
-  get isMorning() {
+  get _greeting() {
+    if (this._isMorning) return 'Good morning';
+    if (this._isEvening) return 'Good evening';
+    if (this._isNight) return 'Good night';
+    return 'Hello';
+  }
+  get _isMorning() {
     return this._date.getHours() >= 6 && this._date.getHours() < 12;
   }
-  get isEvening() {
+  get _isEvening() {
     return this._date.getHours() >= 18 && this._date.getHours() < 22;
   }
-  get isNight() {
+  get _isNight() {
     return this._date.getHours() >= 22
           || (this._date.getHours() >= 0 && this._date.getHours() < 6);
   }
