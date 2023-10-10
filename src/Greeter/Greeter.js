@@ -1,11 +1,15 @@
 import capitalize from 'lodash/capitalize';
 
 export default class Greeter {
-  constructor(date) {
+  constructor(date, logger) {
     this._date = date;
+    this._logger = logger;
   }
   greet(name) {
     const filteredName = capitalize(name.trim());
+
+    this._logger.log(`greeted ${filteredName}`);
+
     if (this.isMorning) return `Good morning ${filteredName}`;
     if (this.isEvening) return `Good evening ${filteredName}`;
     if (this.isNight) return `Good night ${filteredName}`;

@@ -1,3 +1,4 @@
+import { jest } from '@jest/globals';
 import Greeter from './Greeter';
 
 describe('挨拶をする Greeter クラス', () => {
@@ -62,12 +63,21 @@ describe('挨拶をする Greeter クラス', () => {
 
       expect(result).toContain('Hello John');
     });
+    test('呼び出すとコンソールにログを記録する', () => {
+      const logMock = jest.fn();
+      const sut = factoryGreeter(factoryDate(12), {log: logMock});
+
+      sut.greet('John');
+
+      expect(logMock).toHaveBeenCalledWith('greeted John');
+    });
   })
 });
 
-function factoryGreeter(date) {
+function factoryGreeter(date, logger) {
   date = typeof date === "undefined" ? new Date() : date;
-  return new Greeter(date);
+  logger = typeof logger === "undefined" ? {log: jest.fn()} : logger;
+  return new Greeter(date, logger);
 }
 
 function factoryDate(hours) {
