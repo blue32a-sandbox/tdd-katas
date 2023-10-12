@@ -30,5 +30,12 @@ describe('文字列についての計算を行う StringCalculator クラス', (
 
       expect(result).toBe(3);
     });
+    test('区切文字がカンマと改行の両方含まれていても、その合計を数値で返す', () => {
+      const sut = new StringCalculator();
+
+      const result = sut.add('1\n2,3\n4');
+
+      expect(result).toBe(10);
+    });
   });
 });
