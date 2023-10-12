@@ -1,5 +1,3 @@
-import split from 'lodash/split';
-
 export default class StringCalculator {
   add(str) {
     if (str === '') return 0;
@@ -13,9 +11,18 @@ export default class StringCalculator {
 
     return nums.reduce((previous, current) => previous + current, 0);
   }
-  _parse(str) {
-    return split(str, /[,\n]/)
-      .map((v) => parseInt(v))
-      .filter((v) => v < 1000);
+  _parse(input) {
+    let delimiter = /[,\n]/;
+    let data = input;
+    const lines = input.split('\n');
+
+    if (lines[0].startsWith('//')) {
+      delimiter = lines[0].slice(2);
+      data = lines[1];
+    }
+
+    return data.split(delimiter)
+              .map((v) => parseInt(v))
+              .filter((v) => v < 1000);
   }
 }
