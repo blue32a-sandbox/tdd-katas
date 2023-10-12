@@ -56,5 +56,12 @@ describe('文字列についての計算を行う StringCalculator クラス', (
 
       expect(result).toBe(3);
     });
+    test('//で始まる１行目がある場合、//の後に続く文字列を区切りとして、２行目の数字の合計を返す', () => {
+      const sut = new StringCalculator();
+
+      const result = sut.add('//###\n1###2');
+
+      expect(result).toBe(3);
+    });
   });
 });
