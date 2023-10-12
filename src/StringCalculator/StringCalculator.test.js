@@ -16,5 +16,12 @@ describe('文字列についての計算を行う StringCalculator クラス', (
 
       expect(result).toBe(2);
     });
+    test('カンマで区切られた数字は、その合計を数値で返す', () => {
+      const sut = new StringCalculator();
+
+      const result = sut.add('1,2');
+
+      expect(result).toBe(3);
+    });
   });
 });
