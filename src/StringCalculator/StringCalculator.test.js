@@ -37,5 +37,10 @@ describe('文字列についての計算を行う StringCalculator クラス', (
 
       expect(result).toBe(10);
     });
+    test('負の数が含まれる場合は例外をスローする', () => {
+      const sut = new StringCalculator();
+
+      expect(() => sut.add('-1,2,-3')).toThrow('negatives not allowed: -1,-3');
+    });
   });
 });
