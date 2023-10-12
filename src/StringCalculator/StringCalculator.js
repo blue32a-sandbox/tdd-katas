@@ -15,6 +15,7 @@ export default class StringCalculator {
   }
   _parse(str) {
     return split(str, /[,\n]/)
-      .map((v) => parseInt(v));
+      .map((v) => parseInt(v))
+      .filter((v) => v < 1000);
   }
 }

@@ -42,5 +42,12 @@ describe('文字列についての計算を行う StringCalculator クラス', (
 
       expect(() => sut.add('-1,2,-3')).toThrow('negatives not allowed: -1,-3');
     });
+    test('1000以上の数は無視される', () => {
+      const sut = new StringCalculator();
+
+      const result = sut.add('1,1000,2');
+
+      expect(result).toBe(3);
+    });
   });
 });
