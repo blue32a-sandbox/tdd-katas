@@ -40,8 +40,8 @@ describe('文字列についての計算を行う StringCalculator クラス', (
       expect(() => sut.add('-1,2,-3')).toThrow('negatives not allowed: -1,-3');
     });
 
-    test('1000以上の数は無視される', () => {
-      expect(sut.add('1,1000,2')).toBe(3);
+    test('1000より大きいの数は無視される', () => {
+      expect(sut.add('1,1000,1001,2')).toBe(1003);
     });
 
     test.each([

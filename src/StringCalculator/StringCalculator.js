@@ -19,7 +19,7 @@ export default class StringCalculator {
 
     return dataStr.split(delimiter)
               .map((s) => parseInt(s))
-              .filter((i) => i < 1000);
+              .filter((i) => i <= 1000);
   }
   _assertNoNegative(nums) {
     const negatives = nums.filter((i) => i < 0);
