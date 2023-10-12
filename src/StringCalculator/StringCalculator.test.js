@@ -9,5 +9,12 @@ describe('文字列についての計算を行う StringCalculator クラス', (
 
       expect(result).toBe(0);
     });
+    test('単一の数字からなる文字列はそのまま数値に変換して返す', () => {
+      const sut = new StringCalculator();
+
+      const result = sut.add('2');
+
+      expect(result).toBe(2);
+    });
   });
 });
