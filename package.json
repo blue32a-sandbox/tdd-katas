@@ -2,13 +2,14 @@
   "name": "tdd-katas",
   "description": "TDD katas",
   "type": "module",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
   "devDependencies": {
+    "@types/jest": "^29.5.5",
     "jest": "^29.7.0"
   },
   "scripts": {
     "test": "NODE_OPTIONS=--experimental-vm-modules jest"
-  },
-  "dependencies": {
-    "lodash": "^4.17.21"
   }
 }
