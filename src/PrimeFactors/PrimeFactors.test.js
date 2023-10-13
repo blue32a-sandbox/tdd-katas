@@ -20,5 +20,8 @@ describe('素因数分解について扱う PrimeFactors モジュール', () =>
     test('整数 6 のとき、 [2,3] を返す', () => {
       expect(generate(6)).toEqual([2, 3]);
     });
+    test('整数 7 のとき、 [7] を返す', () => {
+      expect(generate(7)).toEqual([7]);
+    });
   });
 });
