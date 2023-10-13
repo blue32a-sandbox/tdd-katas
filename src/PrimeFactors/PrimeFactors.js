@@ -1,7 +1,7 @@
 export function generate(int) {
   const primes = [];
   if (int > 1) {
-    if (int % 2 === 0) {
+    while (int % 2 === 0) {
       primes.push(2);
       int /= 2;
     }
