@@ -1,4 +1,4 @@
-import { fizzBuzz, fizzBuzzFooBoo, smallBigFizzBuzz } from './FizzBuzz';
+import { fizzBuzz, fizzBuzzFooBoo, smallBigFizzBuzz, buzzFizz } from './FizzBuzz';
 import { fixtures } from './fixtures';
 
 describe('FizzBuzz', () => {
@@ -24,6 +24,12 @@ describe('FizzBuzz', () => {
   describe('Step 3. nより小さい/大きいの追加ルール', () => {
     test('16より小さい数字はSmallに、95より大きい数字はBigに変換する', () => {
       expect(smallBigFizzBuzz()).toEqual(fixtures.smallBigFizzBuzz);
+    });
+  });
+
+  describe('Step 4. 初期のFizzBuzzのルールを変更する', () => {
+    test('3の倍数はBuzz、5の倍数はFizz、3と5の倍数はBuzzFizzに変換する', () => {
+      expect(buzzFizz()).toEqual(fixtures.buzzFizz);
     });
   });
 });

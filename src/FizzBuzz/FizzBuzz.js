@@ -43,3 +43,9 @@ export const smallBigFizzBuzz = converter([
   multiplesRuleBase(5, 'Buzz'),
   passThroughRoule,
 ]);
+
+export const buzzFizz = converter([
+  multiplesRuleBase(3, 'Buzz'),
+  multiplesRuleBase(5, 'Fizz'),
+  passThroughRoule,
+]);
