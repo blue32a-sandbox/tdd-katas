@@ -1,4 +1,11 @@
-import { fizzBuzz, fizzBuzzFooBoo, smallBigFizzBuzz, buzzFizz } from './FizzBuzz';
+import {
+  fizzBuzz,
+  fizzBuzzFooBoo,
+  smallBigFizzBuzz,
+  buzzFizz,
+  ftw,
+  gg
+} from './FizzBuzz';
 import { fixtures } from './fixtures';
 
 describe('FizzBuzz', () => {
@@ -30,6 +37,15 @@ describe('FizzBuzz', () => {
   describe('Step 4. 初期のFizzBuzzのルールを変更する', () => {
     test('3の倍数はBuzz、5の倍数はFizz、3と5の倍数はBuzzFizzに変換する', () => {
       expect(buzzFizz()).toEqual(fixtures.buzzFizz);
+    });
+  });
+
+  describe('Step 5. 3の倍数かつ5の倍数、3の倍数または5の倍数の追加ルール', () => {
+    test('3の倍数かつ5の倍数はFTWに変換する', () => {
+      expect(ftw()).toEqual(fixtures.ftw);
+    });
+    test('3の倍数または5の倍数はGGに変換する', () => {
+      expect(gg()).toEqual(fixtures.gg);
     });
   });
 });

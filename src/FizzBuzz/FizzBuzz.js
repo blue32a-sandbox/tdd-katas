@@ -10,14 +10,17 @@ function intRange(start, end) {
   return [...Array(end - start + 1)].map((_, i) => i + start);
 }
 
+const conditionsRuleBase  = (conditions, replace) =>
+  (num, carry) => conditions(num) ? carry + replace : carry;
+
 const multiplesRuleBase   = (multiples, replace) =>
-  (num, carry) => num % multiples === 0 ? carry + replace : carry;
+  conditionsRuleBase((num) => num % multiples === 0, replace);
 
 const lessThanRuleBase    = (lessThan, replace) =>
-  (num, carry) => num < lessThan        ? carry + replace : carry;
+  conditionsRuleBase((num) => num < lessThan,        replace);
 
 const greaterThanRuleBase = (greaterThan, replace) =>
-  (num, carry) => num > greaterThan     ? carry + replace : carry;
+  conditionsRuleBase((num) => num > greaterThan,     replace);
 
 const passThroughRoule =
   (num, carry) => carry === '' ? num : carry;
@@ -47,5 +50,15 @@ export const smallBigFizzBuzz = converter([
 export const buzzFizz = converter([
   multiplesRuleBase(3, 'Buzz'),
   multiplesRuleBase(5, 'Fizz'),
+  passThroughRoule,
+]);
+
+export const ftw = converter([
+  conditionsRuleBase((num) => num % 3 === 0 && num % 5 === 0, 'FTW'),
+  passThroughRoule,
+]);
+
+export const gg = converter([
+  conditionsRuleBase((num) => num % 3 === 0 || num % 5 === 0, 'GG'),
   passThroughRoule,
 ]);
