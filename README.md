@@ -8,3 +8,4 @@ https://github.com/wix-incubator/tdd-katas
 - [String Calculator](./src/StringCalculator/StringCalculator.js)
 - [Prime Factors](./src/PrimeFactors/PrimeFactors.js)
 - [Bowling Game](./src/BowlingGame/BowlingGame.js)
+- [FizzBuzz](./src/FizzBuzz/FizzBuzz.js)
