@@ -1,4 +1,4 @@
-import { fizzBuzz } from './FizzBuzz';
+import { fizzBuzz, fizzBuzzFooBoo } from './FizzBuzz';
 import { fixtures } from './fixtures';
 
 describe('FizzBuzz', () => {
@@ -12,6 +12,12 @@ describe('FizzBuzz', () => {
     });
     test('15から50までのFizzBuzz配列を返す', () => {
       expect(fizzBuzz(15, 50)).toEqual(fixtures.fizzBuzzFrom15to50);
+    });
+  });
+
+  describe('Step 2. 倍数7と11の追加ルール', () => {
+    test('7の倍数はFooに、11の倍数はBooに変換する', () => {
+      expect(fizzBuzzFooBoo()).toEqual(fixtures.fizzBuzzFooBoo);
     });
   });
 });
