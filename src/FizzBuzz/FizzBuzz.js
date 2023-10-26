@@ -2,7 +2,7 @@ const converter = (rules) => (start = 1, end = 100) => {
   const numbers = intRange(start, end);
 
   return numbers.map((num) => {
-    return rules.reduce((carry, roule) => roule(num, carry), '');
+    return rules.reduce((carry, rule) => rule(num, carry), '');
   });
 };
 
@@ -22,13 +22,13 @@ const lessThanRuleBase    = (lessThan, replace) =>
 const greaterThanRuleBase = (greaterThan, replace) =>
   conditionsRuleBase((num) => num > greaterThan,     replace);
 
-const passThroughRoule =
+const passThroughRule =
   (num, carry) => carry === '' ? num : carry;
 
 export const fizzBuzz = converter([
   multiplesRuleBase(3, 'Fizz'),
   multiplesRuleBase(5, 'Buzz'),
-  passThroughRoule,
+  passThroughRule,
 ]);
 
 export const fizzBuzzFooBoo = converter([
@@ -36,7 +36,7 @@ export const fizzBuzzFooBoo = converter([
   multiplesRuleBase(5, 'Buzz'),
   multiplesRuleBase(7, 'Foo'),
   multiplesRuleBase(11, 'Boo'),
-  passThroughRoule,
+  passThroughRule,
 ]);
 
 export const smallBigFizzBuzz = converter([
@@ -44,21 +44,21 @@ export const smallBigFizzBuzz = converter([
   greaterThanRuleBase(95, 'Big'),
   multiplesRuleBase(3, 'Fizz'),
   multiplesRuleBase(5, 'Buzz'),
-  passThroughRoule,
+  passThroughRule,
 ]);
 
 export const buzzFizz = converter([
   multiplesRuleBase(3, 'Buzz'),
   multiplesRuleBase(5, 'Fizz'),
-  passThroughRoule,
+  passThroughRule,
 ]);
 
 export const ftw = converter([
   conditionsRuleBase((num) => num % 3 === 0 && num % 5 === 0, 'FTW'),
-  passThroughRoule,
+  passThroughRule,
 ]);
 
 export const gg = converter([
   conditionsRuleBase((num) => num % 3 === 0 || num % 5 === 0, 'GG'),
-  passThroughRoule,
+  passThroughRule,
 ]);
