@@ -1,11 +1,7 @@
 # Try TDD Katas
 
-https://github.com/wix-incubator/tdd-katas
-
-## Katas
-
-- [Greeter](./src/Greeter/Greeter.js)
-- [String Calculator](./src/StringCalculator/StringCalculator.js)
-- [Prime Factors](./src/PrimeFactors/PrimeFactors.js)
-- [Bowling Game](./src/BowlingGame/BowlingGame.js)
-- [FizzBuzz](./src/FizzBuzz/FizzBuzz.js)
+- [Greeter](./src/Greeter/README.md)
+- [String Calculator](./src/StringCalculator/README.md)
+- [Prime Factors](./src/PrimeFactors/README.md)
+- [Bowling Game](./src/BowlingGame/README.md)
+- [FizzBuzz](./src/FizzBuzz/README.md)
