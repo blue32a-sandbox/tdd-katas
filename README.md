@@ -5,3 +5,4 @@
 - [Prime Factors](./src/PrimeFactors/README.md)
 - [Bowling Game](./src/BowlingGame/README.md)
 - [FizzBuzz](./src/FizzBuzz/README.md)
+- [Christmas Lights](./src/ChristmasLights/README.md)
