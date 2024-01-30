@@ -4,9 +4,9 @@ export class ChristmasLights {
       () => new Array(x).fill().map(() => new Light())
     );
   }
-  countLit() {
+  sumBrightness() {
     return this.grid.reduce(
-      (count, row) => count + row.filter(l => l.isLighted).length,
+      (result, row) => result + row.reduce((result, light) => result + light.brightness, 0),
       0
     );
   }
@@ -42,21 +42,18 @@ export class Coordinate {
 
 class Light {
   constructor() {
-    this.lit = false;
-  }
-  get isLighted() {
-    return this.lit;
+    this.brightness = 0;
   }
   turnOn() {
-    this.lit = true;
+    this.brightness++;
   }
   turnOff() {
-    this.lit = false;
+    this.brightness = Math.max(0, this.brightness - 1);
   }
   toggle() {
-    this.lit = !this.lit;
+    this.brightness += 2;
   }
   toString() {
-    return this.lit ? '#' : '.';
+    return this.brightness.toString();
   }
 }

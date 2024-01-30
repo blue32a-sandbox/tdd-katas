@@ -3,7 +3,7 @@ import { ChristmasLights, Coordinate } from './ChristmasLights';
 describe('ChristmasLights', () => {
   test('all start turned off', () => {
     const lights = factoryChristmasLights(1000, 1000);
-    expect(lights.countLit()).toBe(0);
+    expect(lights.sumBrightness()).toBe(0);
   });
 
   describe('1 x 1', () => {
@@ -15,36 +15,37 @@ describe('ChristmasLights', () => {
 
     test('turn on', () => {
       lights.turnOn(coord(0, 0), coord(0, 0));
-      expect(lights.toString()).toBe("#");
-      expect(lights.countLit()).toBe(1);
-    });
-    test('leave on', () => {
+      expect(lights.toString()).toBe("1");
+      expect(lights.sumBrightness()).toBe(1);
+
       lights.turnOn(coord(0, 0), coord(0, 0));
-      lights.turnOn(coord(0, 0), coord(0, 0));
-      expect(lights.toString()).toBe("#");
-      expect(lights.countLit()).toBe(1);
+      expect(lights.toString()).toBe("2");
+      expect(lights.sumBrightness()).toBe(2);
     });
     test('turn off', () => {
       lights.turnOn(coord(0, 0), coord(0, 0));
-      lights.turnOff(coord(0, 0), coord(0, 0));
-      expect(lights.toString()).toBe(".");
-      expect(lights.countLit()).toBe(0);
-    });
-    test('leave off', () => {
       lights.turnOn(coord(0, 0), coord(0, 0));
+
       lights.turnOff(coord(0, 0), coord(0, 0));
+      expect(lights.toString()).toBe("1");
+      expect(lights.sumBrightness()).toBe(1);
+
       lights.turnOff(coord(0, 0), coord(0, 0));
-      expect(lights.toString()).toBe(".");
-      expect(lights.countLit()).toBe(0);
+      expect(lights.toString()).toBe("0");
+      expect(lights.sumBrightness()).toBe(0);
+
+      lights.turnOff(coord(0, 0), coord(0, 0));
+      expect(lights.toString()).toBe("0");
+      expect(lights.sumBrightness()).toBe(0);
     });
     test('toggle', () => {
       lights.toggle(coord(0, 0), coord(0, 0));
-      expect(lights.toString()).toBe("#");
-      expect(lights.countLit()).toBe(1);
+      expect(lights.toString()).toBe("2");
+      expect(lights.sumBrightness()).toBe(2);
 
       lights.toggle(coord(0, 0), coord(0, 0));
-      expect(lights.toString()).toBe(".");
-      expect(lights.countLit()).toBe(0);
+      expect(lights.toString()).toBe("4");
+      expect(lights.sumBrightness()).toBe(4);
     });
   });
 
@@ -61,31 +62,31 @@ describe('ChristmasLights', () => {
 
     test('turn on (1,0)', () => {
       lights.turnOn(coord(1, 0), coord(1, 0));
-      expect(lights.toString()).toBe(".#");
-      expect(lights.countLit()).toBe(1);
+      expect(lights.toString()).toBe("01");
+      expect(lights.sumBrightness()).toBe(1);
     });
     test('turn on (0,0)~(1,0)', () => {
       lights.turnOn(coord(0, 0), coord(1, 0));
-      expect(lights.toString()).toBe("##");
-      expect(lights.countLit()).toBe(2);
+      expect(lights.toString()).toBe("11");
+      expect(lights.sumBrightness()).toBe(2);
     });
     test('turn off (1,0)', () => {
       turnOnAll();
       lights.turnOff(coord(1, 0), coord(1, 0));
-      expect(lights.toString()).toBe("#.");
-      expect(lights.countLit()).toBe(1);
+      expect(lights.toString()).toBe("10");
+      expect(lights.sumBrightness()).toBe(1);
     });
     test('turn off (0,0)~(1,0)', () => {
       turnOnAll();
       lights.turnOff(coord(0, 0), coord(1, 0));
-      expect(lights.toString()).toBe("..");
-      expect(lights.countLit()).toBe(0);
+      expect(lights.toString()).toBe("00");
+      expect(lights.sumBrightness()).toBe(0);
     });
     test('toggle (0,0)~(1,0)', () => {
       lights.turnOn(coord(1, 0), coord(1, 0));
       lights.toggle(coord(0, 0), coord(1, 0));
-      expect(lights.toString()).toBe("#.");
-      expect(lights.countLit()).toBe(1);
+      expect(lights.toString()).toBe("23");
+      expect(lights.sumBrightness()).toBe(5);
     });
   });
 
@@ -102,45 +103,45 @@ describe('ChristmasLights', () => {
 
     test('turn on (0,1)', () => {
       lights.turnOn(coord(0, 1), coord(0, 1));
-      expect(lights.toString()).toBe("..\n#.");
-      expect(lights.countLit()).toBe(1);
+      expect(lights.toString()).toBe("00\n10");
+      expect(lights.sumBrightness()).toBe(1);
     });
     test('turn on (1,1)', () => {
       lights.turnOn(coord(1, 1), coord(1, 1));
-      expect(lights.toString()).toBe("..\n.#");
-      expect(lights.countLit()).toBe(1);
+      expect(lights.toString()).toBe("00\n01");
+      expect(lights.sumBrightness()).toBe(1);
     });
     test('turn on (0.0)~(1,1)', () => {
       lights.turnOn(coord(0, 0), coord(1, 1));
-      expect(lights.toString()).toBe("##\n##");
-      expect(lights.countLit()).toBe(4);
+      expect(lights.toString()).toBe("11\n11");
+      expect(lights.sumBrightness()).toBe(4);
     });
 
     test('turn off (0,1)', () => {
       turnOnAll();
       lights.turnOff(coord(0, 1), coord(0, 1));
-      expect(lights.toString()).toBe("##\n.#");
-      expect(lights.countLit()).toBe(3);
+      expect(lights.toString()).toBe("11\n01");
+      expect(lights.sumBrightness()).toBe(3);
     });
     test('turn off (1,1)', () => {
       turnOnAll();
       lights.turnOff(coord(1, 1), coord(1, 1));
-      expect(lights.toString()).toBe("##\n#.");
-      expect(lights.countLit()).toBe(3);
+      expect(lights.toString()).toBe("11\n10");
+      expect(lights.sumBrightness()).toBe(3);
     });
     test('turn off (0.0)~(1,1)', () => {
       turnOnAll();
       lights.turnOff(coord(0, 0), coord(1, 1));
-      expect(lights.toString()).toBe("..\n..");
-      expect(lights.countLit()).toBe(0);
+      expect(lights.toString()).toBe("00\n00");
+      expect(lights.sumBrightness()).toBe(0);
     });
 
     test('toggle', () => {
       lights.turnOn(coord(0, 0), coord(0, 0));
       lights.turnOn(coord(1, 1), coord(1, 1));
       lights.toggle(coord(0, 0), coord(1, 1));
-      expect(lights.toString()).toBe(".#\n#.");
-      expect(lights.countLit()).toBe(2);
+      expect(lights.toString()).toBe("32\n23");
+      expect(lights.sumBrightness()).toBe(10);
     });
   });
 
@@ -157,16 +158,16 @@ describe('ChristmasLights', () => {
 
     test('turn on (0,0)~(999,999)', () => {
       lights.turnOn(coord(0, 0), coord(999, 999));
-      expect(lights.countLit()).toBe(1000000);
+      expect(lights.sumBrightness()).toBe(1000000);
     });
     test('turn off (0,0)~(999,999)', () => {
       turnOnAll();
       lights.turnOff(coord(0, 0), coord(999, 999));
-      expect(lights.countLit()).toBe(0);
+      expect(lights.sumBrightness()).toBe(0);
     });
     test('toggle (499,499)~(500,500)', () => {
       lights.toggle(coord(499, 499), coord(500, 500));
-      expect(lights.countLit()).toBe(4);
+      expect(lights.sumBrightness()).toBe(8);
     });
   });
 
@@ -183,7 +184,7 @@ describe('ChristmasLights', () => {
     lights.toggle(coord(720, 196), coord(897, 994));
     lights.toggle(coord(831, 394), coord(904, 860));
 
-    expect(lights.countLit()).toBe(230022);
+    expect(lights.sumBrightness()).toBe(539560);
   });
 });
 
