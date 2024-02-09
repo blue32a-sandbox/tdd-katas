@@ -38,7 +38,18 @@ describe("Gilded Rose", function() {
       expect(items[3].quality).toBe(0);
     });
   });
-  describe('その他の商品', () => {
+  describe('Conjured', () => {
+    test('２倍の速さで品質が劣化する', () => {
+      const gildedRose = factoryShop([factoryConjured({sellIn: 1, quality: 10})]);
+      let items = gildedRose.updateQuality();
+      expect(items[0].sellIn).toBe(0);
+      expect(items[0].quality).toBe(8);
+      items = gildedRose.updateQuality();
+      expect(items[0].sellIn).toBe(-1);
+      expect(items[0].quality).toBe(4);
+    });
+  });
+  describe('通常商品', () => {
     test('古くなるほど品質が下がる', () => {
       const gildedRose = factoryShop([factoryItem({sellIn: 2, quality: 2})]);
       let items = gildedRose.updateQuality();
@@ -92,4 +103,8 @@ function factorySulfuras(params) {
 
 function factoryBackstagePasses(params) {
   return factoryItem({name: 'Backstage passes to a TAFKAL80ETC concert', ...params});
+}
+
+function factoryConjured(params) {
+  return factoryItem({name: 'Conjured Mana Cake', ...params});
 }

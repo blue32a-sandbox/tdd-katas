@@ -24,9 +24,12 @@ export class Shop {
       const oldSellIn = item.sellIn;
       item.sellIn--;
       item.quality = this._backstagePassesNewQuality(item, oldSellIn).value;
+    } else if (this._isConjured(item)) {
+      item.sellIn--;
+      item.quality = this._conjuredNewQuality(item).value;
     } else {
       item.sellIn--;
-      item.quality = this._otherItemNewQuality(item).value;
+      item.quality = this._normalItemNewQuality(item).value;
     }
   }
   _isSellByDatePassed(item) {
@@ -40,6 +43,9 @@ export class Shop {
   }
   _isBackstagePasses(item) {
     return item.name === 'Backstage passes to a TAFKAL80ETC concert';
+  }
+  _isConjured(item) {
+    return item.name === 'Conjured Mana Cake';
   }
   _agedBrieNewQuality(item) {
     const increases = this._isSellByDatePassed(item) ? 2 : 1;
@@ -57,7 +63,11 @@ export class Shop {
     }
     return new Quality(item.quality).increase(increases);
   }
-  _otherItemNewQuality(item) {
+  _conjuredNewQuality(item) {
+    const drops = this._isSellByDatePassed(item) ? 4 : 2;
+    return new Quality(item.quality).drop(drops);
+  }
+  _normalItemNewQuality(item) {
     const drops = this._isSellByDatePassed(item) ? 2 : 1;
     return new Quality(item.quality).drop(drops);
   }
