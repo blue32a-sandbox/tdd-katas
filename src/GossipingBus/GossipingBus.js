@@ -1,8 +1,8 @@
 export class GossipingBus {
-  constructor() {
-    this.allGossips = new Set();
-  }
   operate(plan) {
+    this.allGossips = new Set();
+    this.drivers = [];
+
     this._parsePlan(plan);
     let count = 1;
     for (let min = 0; min <= 480; min++) {
