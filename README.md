@@ -1,5 +1,6 @@
 # Try TDD Katas
 
+- [Roman Numerals](./src/RomanNumerals/README.md)
 - [Greeter](./src/Greeter/README.md)
 - [String Calculator](./src/StringCalculator/README.md)
 - [Prime Factors](./src/PrimeFactors/README.md)
