@@ -8,7 +8,7 @@ export class GossipingBus {
     for (let min = 0; min <= 480; min++) {
       this._exchangeGossips();
       if (this._isAllDriverKnowAllGossips()) return count;
-      this.drivers.forEach(driver => driver.goNextStop());
+      this._goNextStop();
       count++;
     }
     return undefined;
@@ -31,6 +31,9 @@ export class GossipingBus {
         }
       });
     });
+  }
+  _goNextStop() {
+    this.drivers.forEach(driver => driver.goNextStop());
   }
   _isAllDriverKnowAllGossips() {
     return this.drivers.every(driver => driver.isKnowGossips(this.allGossips));
