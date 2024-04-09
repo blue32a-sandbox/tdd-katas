@@ -8,3 +8,4 @@
 - [FizzBuzz](./src/FizzBuzz/README.md)
 - [Christmas Lights](./src/ChristmasLights/README.md)
 - [Gilded Rose](./src/GildedRose/README.md)
+- [Tic Tac Toe](./src/TicTacToe/README.md)
