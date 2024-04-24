@@ -10,3 +10,4 @@
 - [Gilded Rose](./src/GildedRose/README.md)
 - [Tic Tac Toe](./src/TicTacToe/README.md)
 - [Game of Life](./src/GameOfLife/README.md)
+- [Score Keeper](./src/ScoreKeeper/README.md)
